@@ -1043,9 +1043,9 @@ async function sendEmail() {
   try {
     const email = [
       `To: ${contact.email}`,
-      `From: Feras Marjieh <hello.ferasmarjieh@gmail.com>`,
       `Subject: ${subject}`,
       `Content-Type: text/plain; charset=utf-8`,
+      `MIME-Version: 1.0`,
       '',
       body
     ].join('\r\n');
