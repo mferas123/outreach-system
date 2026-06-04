@@ -1042,14 +1042,14 @@ async function sendEmail() {
 
   try {
     const emailLines = [
-      `To: ${contact.email}`,
+      `To: <${contact.email}>`,
       `Subject: ${subject}`,
       `MIME-Version: 1.0`,
       `Content-Type: text/plain; charset=UTF-8`,
       `Content-Transfer-Encoding: 7bit`,
       ``,
       body
-    ].join('\n');
+    ].join('\r\n');
 
     // Proper base64url encoding for Gmail API
     const encoded = btoa(unescape(encodeURIComponent(emailLines)))
