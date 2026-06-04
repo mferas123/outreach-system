@@ -1041,17 +1041,21 @@ async function sendEmail() {
   btn.disabled = true;
 
   try {
-    const email = [
+    const emailLines = [
       `To: ${contact.email}`,
       `Subject: ${subject}`,
-      `Content-Type: text/plain; charset=utf-8`,
       `MIME-Version: 1.0`,
-      '',
+      `Content-Type: text/plain; charset=UTF-8`,
+      `Content-Transfer-Encoding: 7bit`,
+      ``,
       body
-    ].join('\r\n');
+    ].join('\n');
 
-    const encoded = btoa(unescape(encodeURIComponent(email)))
-      .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+    // Proper base64url encoding for Gmail API
+    const encoded = btoa(unescape(encodeURIComponent(emailLines)))
+      .replace(/\+/g, '-')
+      .replace(/\//g, '_')
+      .replace(/=+$/, '');
 
     const res = await fetch('https://gmail.googleapis.com/gmail/v1/users/me/messages/send', {
       method: 'POST',
