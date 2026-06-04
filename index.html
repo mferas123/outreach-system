@@ -851,8 +851,8 @@ function selectContact(index) {
   document.getElementById('emptyState').style.display = 'none';
   document.getElementById('composerForm').style.display = 'flex';
   document.getElementById('composerActions').style.display = 'flex';
-  document.getElementById('fieldTo').value = `${contact.name} <${contact.email}>`;
-  document.getElementById('fieldSubject').value = `Commercial Content Collaboration — ${contact.brand}`;
+  document.getElementById('fieldTo').value = contact.email;
+  document.getElementById('fieldSubject').value = `Commercial Content Collaboration - ${contact.brand}`;
   document.getElementById('fieldBody').value = EMAIL_TEMPLATE(contact.brand, contact.name);
   renderContacts(document.getElementById('contactFilter').value);
 }
